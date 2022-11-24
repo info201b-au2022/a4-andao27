@@ -1,45 +1,58 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: "US Prison Population Trend and Demographic Inequality"
+author: "An Dao"
+date: '2022-11-20'
 output: html_document
 ---
 
-```{r echo=FALSE, eval=TRUE, message=FALSE}
-source("../source/a4-helpers.R")
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r, message=F, warning=F, include=F}
 source("../source/analysis.R")
 ```
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
+In this report, our main question is how the US Prison Population Trend is related to Demographic Inequality. This question is important because in the US, the problem of demographic inequality has always been very serious and thus analyzing the incarceration trends and how it's different among genders and races will allow us to further expose the patterns of inequality in the US.
 
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
-
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
 
 ## Introduction 
-[TODO]
+Systematic inequality, especially gender and races have always been a big social issue in the US in general and in incarceration trend in particular due to too many policies set on people from the minoritized groups and those in power lacking the knowledge of oppression due to privilege hazards. The direct stakeholders are the researchers, data scientists, the government and those who collect data from this dataset because they work directly with the raw data to analyze and write articles about this to provide information about the inequality trend in the jail system. The indirect stakeholders are both the dominant and marginalized groups who are affected by research articles, opinion-based articles written by the researchers and journalists who worked directly with the data. This can be positive or negative affect based on the outcome of the analysis of the article that a group will be more favored compared to the other. 
+Some questions to be answered in this report are: What is the trend in US Prison Population throughout 48 years from 1970 to 2018? What is the trend in US Prison Population by State and how does it compared to the trend in Washington? What is the Jail Population trend by gender and does it show gender inequality in prison population? What does the ratio in prison population for White and AAPI populations look like?
 
 ## Data Summary 
-[TODO]
+`r sum_population` is the total US prison population throughout the years. `r mean_ratio` is the mean ratio of the AAPI population in the US. `r max_ratio` is the maximum population ratio of AAPI and `r min_ratio` is the minimum population ratio of the AAPI.
 
-[TODO ... other sections ... See Canvas for details]
+## Growth of the US Prison Population
+```{r analysis1, echo=FALSE, message=FALSE, warning=FALSE, out.width="100%"}
+plot_jail_pop_for_us()
+```
 
-_All the very best with your work!_
+ What is the trend in US Prison Population throughout 48 years from 1970 to 2018?
+  Throughout the years, we can see from the bar chart that the total jail population of the US is going up until 2008. The pattern shows the most rapid growth between 1979 and 2008. Before 1979, the jail population was relatively constant and there was a slight decreasing in total jail population between 2008 and 2018.
 
+## Growth of Prison Population by State
+```{r analysis2, out.width="100%", echo=FALSE, message=F, warning=F}
+plot_jail_pop_by_states(c("WA", "OR", "CA", "TX"))
+```
+
+What is the trend in US Prison Population by State and how does it compared to the trend in Washington?
+  The line plot shows the jail population trend for California (red line), Oregon (green line), Texas (blue line), and Washington (purple). Within the data from this plot, we can see that jail population in WA was the third lowest among the four states and the pattern was increasing, however it was not rapidly like California or Texas. The trend in Oregon was a slight increase in population and it was the least out of the four states. 
+
+## Jail Population Trend by Gender (Male vs Female)
+```{r analysis3, out.width="100%", echo=FALSE, message=F, warning=F}
+plot_gender_inequality()
+```
+
+ What is the trend in US Prison Population by State and how does it compared to the trend in Washington? What is the Jail Population trend by gender and does it show gender inequality in prison population? 
+  The dot plot shows that the jail population for males and females has a graph. The male population is most of the time much higher than the female jail population. A lot of times, both population are relatively low and there are some outliers where the male population is extremely high compared to the female population.This indicates that much more males were in jail compared to females in general.  
+
+## Jail Population Trend for AAPI and White Population
+```{r analysis4, out.width="100%", echo=FALSE, message=F, warning=F}
+aapi_plot()
+
+white_plot()
+```
+
+What does the ratio in prison population for White and AAPI populations look like?
+The map for AAPI shows that there's a higher ratio of AAPI jail population in the south region and for the central, west, and northwest region, the ratio is not as high as the south region. The east region's ratio is not that high either. The ratio for the White population shows that there are a higher ratio of White jail population in the eastern region and is especially high in some states in the southern and western regions like New Mexico, Louisiana, and Utah. 
